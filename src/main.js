@@ -23,14 +23,16 @@ import 'font-awesome/css/font-awesome.min.css'
 import './main.css'
 
 // 引入单个页面（包括嵌套的子页面）
-import myTable from './components/table.js'
-import myForm from './components/form.js'
-import myChart from './components/chart.js'
-import myAnimate from './components/animate.js'
-import myCalendar from './components/calendar.js'
-import myCard from './components/fetch.js'
+import myTable from './views/table.js'
+import myForm from './views/form.js'
+import myChart from './views/chart.js'
+import myAnimate from './views/animate.js'
+import myCalendar from './views/calendar.js'
+import myCard from './views/fetch.js'
+import login from './views/login'
 
-const ACTIVE = { color: 'red' }
+// const ACTIVE = { color: 'red' }
+const ACTIVE = { color: 'yellow' }
 
 // 配置导航
 class Sider extends React.Component {
@@ -79,6 +81,7 @@ class Sider extends React.Component {
                         <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>导航二</span></span>}>
                             <Menu.Item key="5"><Link to="/myCard">导航</Link></Menu.Item>
                             <Menu.Item key="6"><Link to="/myAnimate">关注</Link></Menu.Item>
+                            <Menu.Item key="7"><Link to="/login">登陆</Link></Menu.Item>
                         </SubMenu>
                     </Menu>
                 </div>
@@ -109,6 +112,7 @@ render((
             <Route path="myCalendar" component={myCalendar} />
             <Route path="myAnimate" component={myAnimate} />
             <Route path="myCard" component={myCard} />
+            <Route path="login" component={login} />
         </Route>
     </Router>
 ), document.getElementById('app'));
