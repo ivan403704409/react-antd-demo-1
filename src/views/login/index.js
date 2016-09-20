@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Foot from './foot.js'
+import NameList from './name_list.js'
+
 // 登陆页
 export default class Login extends React.Component {
 	constructor(props){
@@ -19,6 +21,7 @@ export default class Login extends React.Component {
 					密码： <input type="" name="" />
 				</div>
 				<Foot text="Props"></Foot>
+				<NameList names={ ['Alice', 'Emily', 'Kate'] } ></NameList>
 			</div>
 		)
 	}

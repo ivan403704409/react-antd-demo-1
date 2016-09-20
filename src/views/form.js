@@ -13,11 +13,6 @@ class myForm extends React.Component {
         }
     }
 
-    // 选择select
-    handleSelectChange = (value) => {
-        console.log(`selected ${value}`)
-    }
-
     // 提交表单
     handleSubmit = (e) => {
         e.preventDefault()
