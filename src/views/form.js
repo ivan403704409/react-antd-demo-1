@@ -13,11 +13,16 @@ class myForm extends React.Component {
         }
     }
 
+    // 选择select
+    handleSelectChange = (value) => {
+        console.log(`selected ${value}`)
+    }
+
     // 提交表单
     handleSubmit = (e) => {
         e.preventDefault()
         console.log('收到表单值：', this.props.form.getFieldsValue())
-
+        console.log(this)
         this.props.form.resetFields()
     }
 
@@ -38,7 +43,7 @@ class myForm extends React.Component {
 
         const formItemLayout = {
             labelCol: { span: 3 },
-            wrapperCol: { span: 6 }
+            wrapperCol: { span: 8 }
         }
 
         const success = function () {
@@ -46,7 +51,7 @@ class myForm extends React.Component {
         }
 
         return (
-            <Form horizontal onSubmit={this.handleSubmit}>
+            <Form  onSubmit={this.handleSubmit}>
                 <FormItem
                     id="control-input"
                     label="输入框"

@@ -12,16 +12,20 @@ export default class Foot extends React.Component {
         
     }
 
-    static defaultProps = {
-        text: 'React Component',
-        show: false,
-    }
+    static defaultProps = []
 
 	// 组件渲染
 	render(){
 		return (
 			<div>
-				{this.props.text}
+				<span>小测</span>
+				{
+					this.props.tests.map(val => {
+						return (
+							<div>{ val.name } - { val.time }</div>
+						)
+					})
+				}
 			</div>
 		)
 	}
