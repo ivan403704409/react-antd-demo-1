@@ -1,5 +1,5 @@
 var webpack = require('webpack')
-
+const debug = process.env.NODE_ENV !== 'production'
 module.exports = {
     entry: {
         main: './src/main.js'
@@ -19,6 +19,13 @@ module.exports = {
             },
             {
                 test: /\.js$/,
+                // excluding some local linked packages.
+                // for normal use cases only node_modules is needed.
+                exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
+                loader: 'babel'
+            },
+            {
+                test: /\.jsx$/,
                 // excluding some local linked packages.
                 // for normal use cases only node_modules is needed.
                 exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
@@ -50,10 +57,16 @@ module.exports = {
             "window.jQuery": "jquery"
         })
         // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js', Infinity) // 这是第三方库打包生成的文件
-    ]
+    ],
+    resolve: {
+        extensions: ['', '.jsx', '.js', '.json', '.css'],
+    },
+
+    devtool: debug ? 'source-map' : '',
+
 }
 
-if (process.env.NODE_ENV !== 'production') {
+if (!debug) {
     module.exports.plugins = [
         new webpack.DefinePlugin({
             'process.env': {
@@ -67,6 +80,4 @@ if (process.env.NODE_ENV !== 'production') {
         }),
         new webpack.optimize.OccurenceOrderPlugin()
     ]
-} else {
-    module.exports.devtool = '#source-map'
 }

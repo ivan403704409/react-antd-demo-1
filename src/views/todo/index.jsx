@@ -22,8 +22,14 @@ export default class Todo extends React.Component {
   render() {
     return (
       <div>
-      	<CreateTodo createTask={this.createTask.bind(this)} />
- 		<TodoList todos={this.state.todos} toggleTask={this.toggleTask.bind(this)}  />
+        <h1>React Todos App</h1>
+      	<CreateTodo createTask={this.createTask.bind(this)} todos={this.state.todos} />
+ 		<TodoList 
+            todos={this.state.todos} 
+            toggleTask={this.toggleTask.bind(this)} 
+            saveTask={this.saveTask.bind(this)}  
+            deleteTask={this.deleteTask.bind(this)}  
+        />
       </div>
     );
   }
@@ -34,6 +40,17 @@ export default class Todo extends React.Component {
   		isCompleted: false,
   	})
   	this.setState({ todos: this.state.todos })
+  }
+
+  deleteTask(task){
+    let todos = this.state.todos.filter( todo => todo.task !== task )
+    this.setState({ todos: todos })
+  }
+
+  saveTask(oldTask, newTask){
+    let fondTodo = this.state.todos.filter( todo => todo.task === oldTask )[0]
+    fondTodo.task = newTask
+    this.setState({ todos: this.state.todos })
   }
 
   toggleTask(task){
